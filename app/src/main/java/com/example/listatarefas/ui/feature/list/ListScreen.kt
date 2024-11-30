@@ -44,7 +44,6 @@ fun ListScreen(
     )
     val viewModel = viewModel <ListViewModel>{
         ListViewModel(repository = repository)
-
     }
 
     val todos by viewModel.todos.collectAsState()
@@ -57,7 +56,6 @@ fun ListScreen(
                         is AddEditRoute -> {
                             navigateToAddEditScreen(uiEvent.route.id)
                         }
-
                     }
                 }
 

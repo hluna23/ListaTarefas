@@ -41,7 +41,7 @@ fun AddEditScreen(
     )
     val viewModel = viewModel <AddEditViewModel>{
         AddEditViewModel(
-            id = id ,
+            id = id,
             repository = repository)
 
     }

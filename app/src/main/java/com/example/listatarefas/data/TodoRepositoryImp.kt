@@ -13,12 +13,11 @@ class TodoRepositoryImp(
                     title = title,
                     description = description,
                 )
-
         } ?: TodoEntity(
         title = title,
         description = description,
         isCompleted = false,
-)
+        )
 
         dao.insert(entity)
     }

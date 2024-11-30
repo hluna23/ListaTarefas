@@ -22,41 +22,40 @@ class AddEditViewModel(
 
     ): ViewModel() {
 
-        var title by mutableStateOf("")
-            private set
+    var title by mutableStateOf("")
+        private set
 
-        var description by mutableStateOf<String?>(null)
-            private set
-        private val _uiEvent = Channel<UiEvent>()
-        val uiEvent = _uiEvent.receiveAsFlow()
+    var description by mutableStateOf<String?>(null)
+        private set
+    private val _uiEvent = Channel<UiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
         id?.let {
             viewModelScope.launch {
-               val todo = repository.getBy(it)
-                    title = todo?.title ?: ""
-                    description = todo?.description
+                repository.getBy(it)?.let { todo ->
+                    title = todo.title
+                    description = todo.description
                 }
             }
         }
-        }
+    }
 
     fun onEvent(event: AddEditEvent) {
-            when (event) {
-                is AddEditEvent.TitleChanged -> {
-                    title = event.title
-                }
-
-                is AddEditEvent.DescriptionChanged -> {
-                    description = event.description
-                }
-                AddEditEvent.Save -> {
-                    saveTodo()
-                }
-
+        when (event) {
+            is AddEditEvent.TitleChanged -> {
+                title = event.title
             }
 
+            is AddEditEvent.DescriptionChanged -> {
+                description = event.description
             }
+
+            AddEditEvent.Save -> {
+                saveTodo()
+            }
+        }
+    }
 
     private fun saveTodo() {
         viewModelScope.launch {
@@ -69,10 +68,8 @@ class AddEditViewModel(
                 return@launch
             }
 
-                repository.insert(title, description, id)
-                _uiEvent.send(UiEvent.NavigateBack)
-
-
+            repository.insert(title, description, id)
+            _uiEvent.send(UiEvent.NavigateBack)
         }
-
     }
+}

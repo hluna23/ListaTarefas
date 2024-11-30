@@ -31,12 +31,9 @@ class ListViewModel(
             is ListEvent.Delete -> {
                 delete(event.id)
             }
-
             is ListEvent.CompleteChanged -> {
 
                 completeChanged(event.id, event.isCompleted)
-
-
             }
             is ListEvent.AddEdit -> {
 
@@ -45,13 +42,8 @@ class ListViewModel(
                         AddEditRoute(event.id)
                     ))
                 }
-
             }
-
-
         }
-
-
     }
 
     private fun delete(id:Long ) {
