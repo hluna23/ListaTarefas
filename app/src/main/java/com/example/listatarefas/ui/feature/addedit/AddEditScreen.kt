@@ -30,6 +30,7 @@ import com.example.listatarefas.ui.theme.ListaTarefasTheme
 
 @Composable
 fun AddEditScreen(
+    id: Long?,
     navigateBack: () -> Unit,
 ) {
 
@@ -39,7 +40,9 @@ fun AddEditScreen(
         dao = database.TodoDao
     )
     val viewModel = viewModel <AddEditViewModel>{
-        AddEditViewModel(repository = repository)
+        AddEditViewModel(
+            id = id ,
+            repository = repository)
 
     }
 

@@ -1,1 +1,18 @@
 /build
+.android/
+.bash_history
+.dotnet/
+.gradle/
+.vscode/
+AppData/
+Contacts/
+Desktop/
+Documents/
+Downloads/
+Favorites/
+NTUSER.DAT*
+OneDrive/
+Pictures/
+Saved Games/
+Searches/
+Videos/
